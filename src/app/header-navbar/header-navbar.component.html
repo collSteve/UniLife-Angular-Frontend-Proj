@@ -1,23 +1,45 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button color="basic" aria-label="Example icon-button with heart icon" routerLink="/"
-      class="navigation-btn">
-    <span><h2>UniLife: CPSC 304 Proj</h2></span>
-  </button>
-
-  <div id="nav-btn-container">
-
-    <button mat-icon-button color="basic" aria-label="Example icon-button with heart icon" routerLink="/posts-page"
-      routerLinkActive="active-link" class="navigation-btn">
-      <mat-icon>face</mat-icon>
-      <span>Browse</span>
+<mat-toolbar color="basic">
+  <div id="nav-main-links-container">
+    <button mat-icon-button color="basic" routerLink="/"
+        class="navigation-btn">
+      <span><h2>UniLife</h2></span>
     </button>
 
-    <button mat-icon-button color="basic" aria-label="Example icon-button with heart icon" routerLink="/create-post"
+    <button mat-icon-button color="basic"  routerLink="/posts-page"
+      routerLinkActive="active-link" class="navigation-btn">
+      <span>Browse Posts</span>
+    </button>
+
+    <button mat-icon-button color="basic" routerLink="/browse-groups-page"
+      routerLinkActive="active-link" class="navigation-btn">
+      <span>Browse Groups</span>
+    </button>
+
+    <button mat-icon-button color="basic" routerLink="/my-groups-page"
+      routerLinkActive="active-link" class="navigation-btn">
+      <span>My Groups</span>
+    </button>
+
+    <button mat-icon-button color="basic"  routerLink="/create-post-page"
       routerLinkActive="active-link" class="navigation-btn">
       <mat-icon>library_add</mat-icon>
       <span>Create posts</span>
     </button>
 
+  </div>
+
+  <div id="nav-side-links-container">
+    <button mat-icon-button color="basic" routerLink="/login-page"
+      routerLinkActive="active-link" class="navigation-btn">
+      <span>Login</span>
+    </button>
+
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="before">
+      <button mat-menu-item routerLink="/sign-up-page">Sign up</button>
+    </mat-menu>
   </div>
 
 </mat-toolbar>

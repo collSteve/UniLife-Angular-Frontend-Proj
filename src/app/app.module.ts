@@ -9,6 +9,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
@@ -30,7 +31,8 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

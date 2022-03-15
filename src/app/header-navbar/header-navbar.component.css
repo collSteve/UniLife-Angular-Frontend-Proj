@@ -10,7 +10,7 @@ mat-toolbar {
   align-items: center;
 }
 
-#nav-btn-container {
+#nav-main-links-container, #nav-side-links-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
