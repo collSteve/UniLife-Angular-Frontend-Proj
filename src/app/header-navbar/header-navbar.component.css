@@ -1,0 +1,23 @@
+.navigation-btn {
+  display: inline-block;
+  width: auto;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#nav-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.active-link {
+  color: gold;
+}

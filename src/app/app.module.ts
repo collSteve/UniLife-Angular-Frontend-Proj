@@ -8,15 +8,19 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
+import { HeaderNavbarComponent } from './header-navbar/header-navbar.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestCompComponent,
-    PostsPageComponent
+    PostsPageComponent,
+    HeaderNavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,9 @@ import { PostsPageComponent } from './posts-page/posts-page.component';
     MatSliderModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
