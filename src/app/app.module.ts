@@ -15,13 +15,15 @@ import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
 import { HeaderNavbarComponent } from './header-navbar/header-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
+import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestCompComponent,
     PostsPageComponent,
-    HeaderNavbarComponent
+    HeaderNavbarComponent,
+    IndividualPostPageComponent
   ],
   imports: [
     BrowserModule,
