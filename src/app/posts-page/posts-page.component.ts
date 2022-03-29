@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common'; // format date
 // import { Post } from '../app.model';
 import { PostService } from '../services/post-service.service';
 import { PostModel, PostOrderByValue, PostType, UserPostInfo } from '../models/post-models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts-page',
@@ -32,11 +33,11 @@ export class PostsPageComponent implements OnInit {
   };
 
   Posts: (PostModel & UserPostInfo)[] = [
-    {PID:-1,title: "Steve's Sample Post", post_body: "I want to sell my pepper...", creatorName: "Steve",
+    {pid:-1,title: "Steve's Sample Post", postBody: "I want to sell my pepper...", creatorName: "Steve",
     createdDate: new Date(2002,6,27), numLikes:666, numDislikes: 0, likedByMe: false, dislikedByMe:false,
     thum_nail_img: "https://www.spicejungle.com/wp/files/2016/10/where-does-black-pepper-come-from.jpg", creatorAid:1001
     },
-    {PID:-2,title: "Dog's Sample Post", post_body: "Wof wof bark bark", creatorName: "The Dog",
+    {pid:-2,title: "Dog's Sample Post", postBody: "Wof wof bark bark", creatorName: "The Dog",
     createdDate: new Date(1997,10,7), numLikes:243, numDislikes: 23, likedByMe: false, dislikedByMe:false, creatorAid:2},
   ];
 
@@ -78,6 +79,7 @@ export class PostsPageComponent implements OnInit {
   }
 
   onClickPanelSubmit() {
+    console.log(this.Posts);
     this.getPostsAndUpdate(this.panelBindedValues.postType,
       this.panelBindedValues.postOrderBy,
       this.panelBindedValues.orderIsAsc);

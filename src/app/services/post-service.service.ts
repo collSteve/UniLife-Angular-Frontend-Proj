@@ -17,4 +17,12 @@ export class PostService {
       callback(JSON.parse(JSON.stringify(posts)));
     });
   }
+
+  getPostByPid(pid:number, callback:(arg1:PostModel)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/${pid}`;
+    this.httpClient.get<PostModel>(apiURL)
+    .subscribe((posts)=>{
+      callback(JSON.parse(JSON.stringify(posts)));
+    });
+  }
 }

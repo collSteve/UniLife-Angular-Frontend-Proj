@@ -1,10 +1,10 @@
 <mat-card-header>
   <mat-card-title>{{myPost.title}}</mat-card-title>
-  <mat-card-subtitle>Creator: {{myPost.creator}} | Created at {{datepipe.transform(myPost.create_date,'YYYY-MMM-dd')}}</mat-card-subtitle>
+  <mat-card-subtitle>Creator: {{myPost.creatorName}} | Created at {{datepipe.transform(myPost.createdDate,'YYYY-MMM-dd')}}</mat-card-subtitle>
 </mat-card-header>
 <mat-card-content>
   <p>
-    {{myPost.description}}
+    {{myPost.postBody}}
   </p>
 
   <mat-card-actions>

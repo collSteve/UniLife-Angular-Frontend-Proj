@@ -25,9 +25,9 @@ export type UIPost = {
 
 
 export type PostModel = {
-  PID:number,
+  pid:number,
   title: string,
-  post_body: string
+  postBody: string
   createdDate:Date,
   creatorAid:number,
   numLikes:number,
