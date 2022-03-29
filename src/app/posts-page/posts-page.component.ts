@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common'; // format date
-import { Post } from '../app.model';
-
-type UserPostInfo = {
-  likedByMe: boolean,
-  dislikedByMe: boolean
-}
+import { Post, UserPostInfo } from '../app.model';
 
 @Component({
   selector: 'app-posts-page',
@@ -16,11 +11,11 @@ export class PostsPageComponent implements OnInit {
   datepipe: DatePipe = new DatePipe('en-US'); // format dates
 
   Posts: (Post & UserPostInfo)[] = [
-    {title: "Steve's Sample Post", description: "I want to sell my pepper...", creator: "Steve",
+    {pid:-1,title: "Steve's Sample Post", description: "I want to sell my pepper...", creator: "Steve",
     create_date: new Date(2002,6,27), num_likes:666, num_dislikes: 0, likedByMe: false, dislikedByMe:false,
     thum_nail_img: "https://www.spicejungle.com/wp/files/2016/10/where-does-black-pepper-come-from.jpg"
     },
-    {title: "Dog's Sample Post", description: "Wof wof bark bark", creator: "The Dog",
+    {pid:-2,title: "Dog's Sample Post", description: "Wof wof bark bark", creator: "The Dog",
     create_date: new Date(1997,10,7), num_likes:243, num_dislikes: 23, likedByMe: false, dislikedByMe:false},
   ];
 

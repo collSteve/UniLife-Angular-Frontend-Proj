@@ -11,7 +11,7 @@
   </div>
 
   <div>
-    <mat-card-header>
+    <mat-card-header routerLink="/post/{{post.pid}}" style="cursor: pointer;">
       <mat-card-title>{{post.title}}</mat-card-title>
       <mat-card-subtitle>Creator: {{post.creator}} | Created at {{datepipe.transform(post.create_date,'YYYY-MMM-dd')}}</mat-card-subtitle>
     </mat-card-header>
