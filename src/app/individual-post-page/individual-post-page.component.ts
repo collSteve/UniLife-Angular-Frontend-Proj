@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common'; // format date
-import { Post, UserPostInfo } from '../app.model';
+import { UIPost } from '../models/post-models';
+import { UserPostInfo } from '../models/post-models';
 
 @Component({
   selector: 'app-individual-post-page',
@@ -11,7 +12,7 @@ export class IndividualPostPageComponent implements OnInit {
 
   datepipe: DatePipe = new DatePipe('en-US'); // format dates
 
-  myPost: Post & UserPostInfo = {pid:-1,title: "Steve's Sample Post", description: "I want to sell my pepper...", creator: "Steve",
+  myPost: UIPost & UserPostInfo = {pid:-1,title: "Steve's Sample Post", description: "I want to sell my pepper...", creator: "Steve",
   create_date: new Date(2002,6,27), num_likes:666, num_dislikes: 0, likedByMe: false, dislikedByMe:false,
   thum_nail_img: "https://www.spicejungle.com/wp/files/2016/10/where-does-black-pepper-come-from.jpg"
   };
@@ -22,7 +23,7 @@ export class IndividualPostPageComponent implements OnInit {
   }
 
 
-  onClickLike(post: Post&UserPostInfo) {
+  onClickLike(post: UIPost&UserPostInfo) {
     if (post.likedByMe) {
       post.likedByMe = false;
     }
@@ -32,7 +33,7 @@ export class IndividualPostPageComponent implements OnInit {
     }
   }
 
-  onClickDisike(post: Post&UserPostInfo) {
+  onClickDisike(post: UIPost&UserPostInfo) {
     if (post.dislikedByMe) {
       post.dislikedByMe = false;
     }
