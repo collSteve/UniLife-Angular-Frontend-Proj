@@ -16,12 +16,15 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
 import { HeaderNavbarComponent } from './header-navbar/header-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
+import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { IndividualPostPageComponent } from './individual-post-page/individual-p
     TestCompComponent,
     PostsPageComponent,
     HeaderNavbarComponent,
-    IndividualPostPageComponent
+    IndividualPostPageComponent,
+    CreatePostPageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import { IndividualPostPageComponent } from './individual-post-page/individual-p
     MatSelectModule,
     MatSlideToggleModule,
     MatDividerModule,
-    MatTabsModule
+    MatTabsModule,
+    MatInputModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

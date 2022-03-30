@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PostOrderByValue, PostModel, PostType, CommentModel } from '../models/post-models';
+import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject } from '../models/post-models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -31,6 +31,13 @@ export class PostService {
     this.httpClient.get<CommentModel[]>(apiURL)
     .subscribe((comments)=>{
       callback(JSON.parse(JSON.stringify(comments)));
+    });
+  }
+
+  createPost(createRequest: PostCreateRequestObject, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts`;
+    this.httpClient.post(apiURL, createRequest).subscribe(()=>{
+      callback(true);
     });
   }
 }

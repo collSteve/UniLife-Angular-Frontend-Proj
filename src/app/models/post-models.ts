@@ -1,4 +1,4 @@
-export const enum PostType  {
+export enum PostType  {
   SellingPost= "SellingPost",
   HousingPost= "HousingPost",
   SocialMediaPost= "SocialMediaPost"
@@ -50,4 +50,15 @@ export type CommentModel = {
   cid: number,
   creatorUid: number,
   pid: number
+}
+
+export type PostCreateRequestObject = {
+  PostType: string,
+  postTitle: string,
+  postBody: string,
+  createDate: Date,
+  creatorUID: number,
+  email?: string,
+  phoneNumber?: number,
+  address?:string
 }
