@@ -56,6 +56,13 @@ export class PostService {
     this.httpClient.put(apiURL, updateRequest).subscribe(()=>{
       callback(true);
     });
+  }
 
+  deletePost(pid:number, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts`;
+
+    this.httpClient.delete(apiURL, {body:pid}).subscribe(()=>{
+      callback(true);
+    });
   }
 }

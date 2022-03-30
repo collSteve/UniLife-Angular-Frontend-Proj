@@ -95,7 +95,7 @@
           </p>
         </mat-card-content>
 
-        <mat-card-actions>
+        <mat-card-actions style="display: flex; justify-content: start;">
           <ng-template *ngIf="post.likedByMe; then likedButton else notLikedButton"></ng-template>
           <ng-template #likedButton>
             <button mat-flat-button (click)="onClickLike(post)">
@@ -120,7 +120,8 @@
             </button>
           </ng-template>
 
-          <button mat-raised-button>Comment</button>
+          <button mat-raised-button (click)="onClickEdit(post.pid)" style="justify-self: end;">Edit</button>
+          <button mat-raised-button (click)="onClickDelete(post.pid)" color="warn" style="justify-self: end;">Delete</button>
         </mat-card-actions>
       </div>
 

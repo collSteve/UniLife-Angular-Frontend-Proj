@@ -43,7 +43,7 @@ export class PostsPageComponent implements OnInit {
     createdDate: new Date(1997,10,7), numLikes:243, numDislikes: 23, likedByMe: false, dislikedByMe:false, creatorAid:2},
   ];
 
-  constructor(private postsService: PostService) { }
+  constructor(private postsService: PostService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPostsAndUpdate(PostType.SellingPost);
@@ -102,6 +102,15 @@ export class PostsPageComponent implements OnInit {
         this.panelBindedValues.categories.splice(i, 1);
       }
 
+    }
   }
+
+  onClickEdit(pid:number) {
+    this.router.navigate(['/editPost', pid]);
+  }
+
+  onClickDelete(pid:number) {
+    this.postsService.deletePost(pid, (arg)=>{console.log("delete post success")});
+    window.location.reload();
   }
 }
