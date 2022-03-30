@@ -88,6 +88,7 @@ export class CreatePostPageComponent implements OnInit {
     if (this.postModifyData.modifyType === PostModifyType.Create) {
       createRequest.createDate = new Date();
       this.postsService.createPost(createRequest, ()=>{console.log("success")});
+      this.router.navigate(['/posts-page']);
     }
     else if (this.postModifyData.modifyType === PostModifyType.Edit) {
       const updateRequest: UpdatePostPutRequestObject = {
@@ -100,6 +101,8 @@ export class CreatePostPageComponent implements OnInit {
       }
 
       this.postsService.updatePost(updateRequest, (arg)=>{console.log("success")});
+
+      this.router.navigate(['/post', updateRequest.pid]);
     }
   }
 
