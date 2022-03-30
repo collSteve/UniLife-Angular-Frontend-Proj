@@ -8,15 +8,21 @@
 <div id="page" style="display: flex; flex-direction: row; justify-content: space-between;">
   <mat-card id="filter-panel" style="width: 27%; display: flex; flex-direction: column;">
     <!-- Tabs -->
-    <mat-tab-group dynamicHeight>
+    <mat-tab-group dynamicHeight
+    [selectedIndex]="panelBindedValues.queryType"
+    (selectedIndexChange)="onQueryPanelTabChange($event)">
       <mat-tab label="Simple">
       </mat-tab>
 
       <mat-tab label="Search">
         <mat-form-field appearance="standard">
           <mat-label>Search</mat-label>
-          <input type="text" matInput >
-
+          <input type="text" matInput
+          [(ngModel)]="panelBindedValues.searchBarValue"
+          minlength="1"
+          #searchBar="ngModel"
+          required>
+          <mat-error *ngIf="searchBar.invalid">Invalid search string</mat-error>
         </mat-form-field>
         <span matSuffix>
           <button mat-mini-fab color="basic">

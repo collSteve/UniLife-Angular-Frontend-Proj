@@ -18,6 +18,30 @@ export class PostService {
     });
   }
 
+  getPostsBySearchTitle(postType: PostType, title:string, callback:(arg1:PostModel[])=>void, orderBy?:PostOrderByValue, asc?:boolean){
+    let apiURL = `${environment.server_base_URL}/api/posts/SerachTitle/${postType}?title=${title}&orderBy=${orderBy??0}&asc=${asc??false}`;
+    this.httpClient.get<PostModel[]>(apiURL)
+    .subscribe((posts)=>{
+      callback(JSON.parse(JSON.stringify(posts)));
+    });
+  }
+
+  getPostByCategories(postType: PostType, categories: string[],
+    callback:(arg1:PostModel[])=>void, orderBy?:PostOrderByValue, asc?:boolean) {
+    let cateQuery:string = "";
+    categories.forEach((v)=>{
+      cateQuery+=`&category=${v}`;
+    });
+    // remove space
+    cateQuery.replace(/\s/g, '');
+
+    let apiURL = `${environment.server_base_URL}/api/posts/Categories?postType=${postType}${cateQuery}&orderBy=${orderBy??0}&asc=${asc??false}`;
+    this.httpClient.get<PostModel[]>(apiURL)
+    .subscribe((posts)=>{
+      callback(JSON.parse(JSON.stringify(posts)));
+    });
+  }
+
   getPostByPid(pid:number, callback:(arg1:PostModel)=>void) {
     let apiURL = `${environment.server_base_URL}/api/posts/${pid}`;
     this.httpClient.get<PostModel>(apiURL)
