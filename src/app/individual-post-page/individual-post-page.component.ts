@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common'; // format date
-import { UIPost } from '../models/post-models';
+import { CommentModel, UIPost } from '../models/post-models';
 import { PostModel, UserPostInfo } from '../models/post-models';
 import { ActivatedRoute, Params } from '@angular/router';
 import { PostService } from '../services/post-service.service';
@@ -19,6 +19,9 @@ export class IndividualPostPageComponent implements OnInit {
   thum_nail_img: "https://www.spicejungle.com/wp/files/2016/10/where-does-black-pepper-come-from.jpg", creatorAid:1001
   };
 
+  comments: CommentModel[] = [
+    {cid:123, pid: 2132, commentBody: "Lol Funny Comments", creatorName:"Seve", creatorUid:1231}
+  ]
   constructor(private postsService: PostService, private route: ActivatedRoute) { }
 
   pid:number = -999;
@@ -29,6 +32,7 @@ export class IndividualPostPageComponent implements OnInit {
     });
 
     this.getPostandUpdateDisplay(this.pid);
+    this.getCommentsanUpdateDisplay(this.pid);
   }
 
   getPostandUpdateDisplay(pid: number) {
@@ -37,6 +41,17 @@ export class IndividualPostPageComponent implements OnInit {
 
   updatePostDisplay(post: PostModel) {
     this.myPost = {...post, likedByMe: false, dislikedByMe: false};
+  }
+
+  getCommentsanUpdateDisplay(pid:number) {
+    this.postsService.getCommentsByPid(pid, (comments)=>this.updateCommentsDisplay(comments));
+  }
+
+  updateCommentsDisplay(comments: CommentModel[]) {
+    this.comments = [];
+    comments.forEach((comment:CommentModel)=>{
+      this.comments.push({...comment});
+    });
   }
 
 

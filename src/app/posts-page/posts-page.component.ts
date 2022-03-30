@@ -55,7 +55,7 @@ export class PostsPageComponent implements OnInit {
     this.Posts = [];
     posts.forEach((post:PostModel)=>{
       this.Posts.push({...post, likedByMe: false,dislikedByMe: false});
-    })
+    });
   }
 
   onClickLike(post: PostModel&UserPostInfo) {

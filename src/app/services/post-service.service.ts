@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PostOrderByValue, PostModel, PostType } from '../models/post-models';
+import { PostOrderByValue, PostModel, PostType, CommentModel } from '../models/post-models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -23,6 +23,14 @@ export class PostService {
     this.httpClient.get<PostModel>(apiURL)
     .subscribe((posts)=>{
       callback(JSON.parse(JSON.stringify(posts)));
+    });
+  }
+
+  getCommentsByPid(pid: number, callback:(arg1:CommentModel[])=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/comments/${pid}`;
+    this.httpClient.get<CommentModel[]>(apiURL)
+    .subscribe((comments)=>{
+      callback(JSON.parse(JSON.stringify(comments)));
     });
   }
 }

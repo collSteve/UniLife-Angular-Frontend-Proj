@@ -43,3 +43,11 @@ export type UserPostInfo = {
   dislikedByMe: boolean,
   thum_nail_img?:string
 }
+
+export type CommentModel = {
+  creatorName: string,
+  commentBody: string,
+  cid: number,
+  creatorUid: number,
+  pid: number
+}
