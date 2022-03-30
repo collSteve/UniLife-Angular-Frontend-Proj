@@ -18,6 +18,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatListModule} from '@angular/material/list';
 
 import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
@@ -52,7 +53,8 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
     MatDividerModule,
     MatTabsModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject } from '../models/post-models';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject } from '../models/post-models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -39,5 +39,23 @@ export class PostService {
     this.httpClient.post(apiURL, createRequest).subscribe(()=>{
       callback(true);
     });
+  }
+
+  determinePostType(pid:number, callback:(arg:PostType)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/postType/${pid}`;
+
+    this.httpClient.get<string>(apiURL, {responseType: 'text' as 'json'}).subscribe((postType)=>{
+      console.log("PostType"+postType);
+      callback(postType as PostType);
+    });
+  }
+
+  updatePost(updateRequest:UpdatePostPutRequestObject, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts`;
+
+    this.httpClient.put(apiURL, updateRequest).subscribe(()=>{
+      callback(true);
+    });
+
   }
 }

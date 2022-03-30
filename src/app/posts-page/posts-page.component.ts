@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common'; // format date
 // import { Post } from '../app.model';
 import { PostService } from '../services/post-service.service';
-import { PostModel, PostOrderByValue, PostType, UserPostInfo } from '../models/post-models';
+import { PostModel, PostOrderByValue, PostType, UserPostInfo, PostModifyType } from '../models/post-models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,10 +26,12 @@ export class PostsPageComponent implements OnInit {
   ];
 
 
-  panelBindedValues = {
+  panelBindedValues: {postType:PostType, postOrderBy:PostOrderByValue|undefined,
+                      orderIsAsc:boolean, categories:string[]} = {
     postType:PostType.SellingPost,
     postOrderBy: undefined,
-    orderIsAsc: false
+    orderIsAsc: false,
+    categories:[]
   };
 
   Posts: (PostModel & UserPostInfo)[] = [
@@ -45,6 +47,10 @@ export class PostsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPostsAndUpdate(PostType.SellingPost);
+  }
+
+  public get postModifyTypeEnum(): typeof PostModifyType {
+    return PostModifyType;
   }
 
   getPostsAndUpdate(postType: PostType, orderBy?:PostOrderByValue, asc?:boolean) {
@@ -83,5 +89,19 @@ export class PostsPageComponent implements OnInit {
     this.getPostsAndUpdate(this.panelBindedValues.postType,
       this.panelBindedValues.postOrderBy,
       this.panelBindedValues.orderIsAsc);
+  }
+
+  addCategory(category:string) {
+    if (category) this.panelBindedValues.categories.push(category);
+  }
+
+  removeCategory(category:string) {
+    for( let i = 0; i < this.panelBindedValues.categories.length; i++){
+
+      if ( this.panelBindedValues.categories[i] === category) {
+        this.panelBindedValues.categories.splice(i, 1);
+      }
+
+  }
   }
 }

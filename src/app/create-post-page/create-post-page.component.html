@@ -1,11 +1,24 @@
 <mat-card>
+  <h4>{{pageTitle}}</h4>
+
   <section style="margin-bottom: 10px;">
+    <div  *ngIf="postModifyData.modifyType==postModifyTypeEnum.Create; then thenBlock else elseBlock"></div>
+
+  </section>
+  <ng-template #thenBlock>
     <mat-button-toggle-group name="selectPostType" [(ngModel)]="postCreationValues.PostType">
       <mat-button-toggle [value]="postTypeEnum.SellingPost">Selling Post</mat-button-toggle>
       <mat-button-toggle [value]="postTypeEnum.HousingPost">Housing Post</mat-button-toggle>
       <mat-button-toggle [value]="postTypeEnum.SocialMediaPost">Social Media Post</mat-button-toggle>
     </mat-button-toggle-group>
-  </section>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <mat-button-toggle-group name="selectPostType">
+      <mat-button-toggle [value]="postCreationValues.PostType">{{postCreationValues.PostType}}</mat-button-toggle>
+    </mat-button-toggle-group>
+  </ng-template>
+
 
   <form (submit)="onSubmitClicked(postForm)" #postForm="ngForm" class="create-post-form" style="display: flex; flex-direction: column; justify-content: space-between;">
 
