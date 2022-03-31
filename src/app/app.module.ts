@@ -25,6 +25,7 @@ import { HeaderNavbarComponent } from './header-navbar/header-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
+import { GroupPageComponent } from './group-page/group-page.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
     PostsPageComponent,
     HeaderNavbarComponent,
     IndividualPostPageComponent,
-    CreatePostPageComponent
+    CreatePostPageComponent,
+    GroupPageComponent
   ],
   imports: [
     BrowserModule,

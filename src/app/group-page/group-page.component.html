@@ -1,0 +1,46 @@
+
+
+<body>
+
+
+  <div style="width:100%;">
+    <div style="width:10%; float:left;"></div>
+    <input class="searchbar" style="width:80%; float:left; border-bottom:solid; border-width:1px;" placeholder="Search"> 
+    <button mat-raised-button (click)="clickSearch()"><mat-icon>search</mat-icon></button>
+  
+  </div>
+<div class="Groups" style="float:inline-start;">
+  <div id="groups-list" style="width: 70%;">
+    <mat-card *ngFor="let group of Groups; index as i;" style="display: flex; flex-direction: row; justify-content: center; gap:50px; align-items: center;" class="GroupsList">
+      <div *ngIf="i%2 == 0;" style="background-color:lightblue;">
+        <mat-card-header [routerLink]="['/group', group.gid]" style="cursor: pointer;">
+          <mat-card-title>{{group.groupName}}</mat-card-title>
+
+
+          <mat-card-subtitle>GroupId: {{group.gid}}</mat-card-subtitle>
+
+
+        </mat-card-header>
+        <div>
+          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left:16px">Members: 0</mat-card-subtitle>
+          <button mat-raised-button style="display:inline-block;">Join</button>
+        </div>
+      </div>
+      <div *ngIf="i%2 > 0;" style="background-color: #dcf7f7;">
+        <mat-card-header [routerLink]="['/group', group.gid]" style="cursor: pointer;">
+          <mat-card-title>{{group.groupName}}</mat-card-title>
+
+
+          <mat-card-subtitle>GroupId: {{group.gid}}</mat-card-subtitle>
+
+
+        </mat-card-header>
+        <div>
+          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left: 16px">Members: 0</mat-card-subtitle>
+          <button mat-raised-button style="display:inline-block;">Join</button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+</body>
