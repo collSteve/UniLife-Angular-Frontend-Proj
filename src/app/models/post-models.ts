@@ -62,3 +62,26 @@ export type PostCreateRequestObject = {
   phoneNumber?: number,
   address?:string
 }
+
+export enum PostModifyType {
+  Edit="Edit",
+  Create="Create"
+}
+
+export type PostModifyData = {
+  modifyType: PostModifyType,
+  pid?:number
+}
+
+
+export type UpdatePostPutRequestObject =
+{
+    pid : number,
+    postTitle?: string
+    postBody?: string
+    numLikes?: number
+    numDislikes?: number,
+    email?: string,
+    phoneNumber?:string
+    address?: string
+}

@@ -28,7 +28,7 @@ export class IndividualPostPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
-      this.pid = params['postid'];
+      this.pid = Number(params['postid']);
     });
 
     this.getPostandUpdateDisplay(this.pid);

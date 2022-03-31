@@ -2,8 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common'; // format date
 // import { Post } from '../app.model';
 import { PostService } from '../services/post-service.service';
-import { PostModel, PostOrderByValue, PostType, UserPostInfo } from '../models/post-models';
+import { PostModel, PostOrderByValue, PostType, UserPostInfo, PostModifyType } from '../models/post-models';
 import { Router } from '@angular/router';
+import { MatTabChangeEvent } from '@angular/material/tabs';
+
+enum QueryType{
+    Simple = 0,
+    Search = 1,
+    FilterByCategories = 2
+}
 
 @Component({
   selector: 'app-posts-page',
@@ -11,6 +18,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./posts-page.component.css']
 })
 export class PostsPageComponent implements OnInit {
+
   datepipe: DatePipe = new DatePipe('en-US'); // format dates
 
   postTypes: PostType[] = [
@@ -26,10 +34,15 @@ export class PostsPageComponent implements OnInit {
   ];
 
 
-  panelBindedValues = {
-    postType: PostType.SellingPost,
+  panelBindedValues: {postType:PostType, postOrderBy:PostOrderByValue|undefined,
+                      orderIsAsc:boolean, categories:string[], queryType: QueryType,
+                      searchBarValue:string} = {
+    postType:PostType.SellingPost,
     postOrderBy: undefined,
-    orderIsAsc: false
+    orderIsAsc: false,
+    searchBarValue:"",
+    categories:[],
+    queryType: QueryType.Simple
   };
 
   Posts: (PostModel & UserPostInfo)[] = [
@@ -43,15 +56,31 @@ export class PostsPageComponent implements OnInit {
       createdDate: new Date(1997, 10, 7), numLikes: 243, numDislikes: 23, likedByMe: false, dislikedByMe: false, creatorAid: 2
     },
   ];
-  
-  constructor(private postsService: PostService) { }
+
+  constructor(private postsService: PostService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPostsAndUpdate(PostType.SellingPost);
   }
 
-  getPostsAndUpdate(postType: PostType, orderBy?: PostOrderByValue, asc?: boolean) {
-    this.postsService.getPostsByType(postType, (post) => this.updatePostsList(post), orderBy, asc);
+  public get postModifyTypeEnum(): typeof PostModifyType {
+    return PostModifyType;
+  }
+
+  getPostsAndUpdate(postType: PostType, orderBy?:PostOrderByValue, asc?:boolean) {
+    if (this.panelBindedValues.queryType === QueryType.Simple) {
+      this.postsService.getPostsByType(postType,(post)=>this.updatePostsList(post), orderBy, asc);
+    }
+    else if (this.panelBindedValues.queryType === QueryType.Search) {
+      if (this.panelBindedValues.searchBarValue)
+        this.postsService.getPostsBySearchTitle(postType, this.panelBindedValues.searchBarValue,
+          (post)=>this.updatePostsList(post), orderBy, asc);
+    }
+    else if (this.panelBindedValues.queryType === QueryType.FilterByCategories) {
+      if (this.panelBindedValues.categories.length > 0)
+        this.postsService.getPostByCategories(postType, this.panelBindedValues.categories,
+          (post)=>this.updatePostsList(post), orderBy, asc);
+    }
   }
 
   updatePostsList(posts: PostModel[]) {
@@ -87,6 +116,33 @@ export class PostsPageComponent implements OnInit {
     this.getPostsAndUpdate(this.panelBindedValues.postType,
       this.panelBindedValues.postOrderBy,
       this.panelBindedValues.orderIsAsc);
+  }
+
+  addCategory(category:string) {
+    if (category) this.panelBindedValues.categories.push(category);
+  }
+
+  removeCategory(category:string) {
+    for( let i = 0; i < this.panelBindedValues.categories.length; i++){
+
+      if ( this.panelBindedValues.categories[i] === category) {
+        this.panelBindedValues.categories.splice(i, 1);
+      }
+
+    }
+  }
+
+  onClickEdit(pid:number) {
+    this.router.navigate(['/editPost', pid]);
+  }
+
+  onClickDelete(pid:number) {
+    this.postsService.deletePost(pid, (arg)=>{console.log("delete post success")});
+    window.location.reload();
+  }
+
+  onQueryPanelTabChange(index:number) {
+    this.panelBindedValues.queryType = index;
   }
 }
 

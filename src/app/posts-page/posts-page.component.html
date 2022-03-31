@@ -1,5 +1,5 @@
 <mat-toolbar color="basic" style="display: flex; flex-direction: row; justify-content : flex-end;">
-  <button mat-raised-button routerLink="/" class="navigation-btn" routerLink="/createPost">
+  <button mat-raised-button routerLink="/" class="navigation-btn" routerLink="/createPost" [state]="{modifyType: postModifyTypeEnum.Create}">
     <mat-icon>library_add</mat-icon>
     <span>Create posts</span>
   </button>
@@ -7,6 +7,54 @@
 
 <div id="page" style="display: flex; flex-direction: row; justify-content: space-between;">
   <mat-card id="filter-panel" style="width: 27%; display: flex; flex-direction: column;">
+    <!-- Tabs -->
+    <mat-tab-group dynamicHeight
+    [selectedIndex]="panelBindedValues.queryType"
+    (selectedIndexChange)="onQueryPanelTabChange($event)">
+      <mat-tab label="Simple">
+      </mat-tab>
+
+      <mat-tab label="Search">
+        <mat-form-field appearance="standard">
+          <mat-label>Search</mat-label>
+          <input type="text" matInput
+          [(ngModel)]="panelBindedValues.searchBarValue"
+          minlength="1"
+          #searchBar="ngModel"
+          required>
+          <mat-error *ngIf="searchBar.invalid">Invalid search string</mat-error>
+        </mat-form-field>
+        <span matSuffix>
+          <button mat-mini-fab color="basic">
+            <mat-icon aria-label="Example home icon">search</mat-icon>
+          </button>
+        </span>
+      </mat-tab>
+
+      <mat-tab label="Filter By Categories">
+        <mat-list style="display: flex; flex-wrap: wrap; flex-direction: row;">
+          <mat-card *ngFor="let category of panelBindedValues.categories" style="height: 25px; display: flex; flex-direction: row; justify-content: start; align-items: center;">
+            <h3 matLine> {{category}} </h3>
+            <button mat-flat-button color="basic" (click)="removeCategory(category)">
+              <mat-icon matListIcon>delete</mat-icon>
+            </button>
+          </mat-card>
+        </mat-list>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+          <mat-form-field appearance="standard">
+            <mat-label>Category</mat-label>
+            <input type="text" matInput #newCategoryInput>
+          </mat-form-field>
+          <button mat-raised-button color="primary" (click)="addCategory(newCategoryInput.value)">
+            <mat-icon>add_box</mat-icon>
+            Add Category
+          </button>
+        </div>
+
+      </mat-tab>
+    </mat-tab-group>
+
     <mat-form-field appearance="fill">
       <mat-label>Select a type of post</mat-label>
       <mat-select [(ngModel)]="panelBindedValues.postType" name="postTypeSelect">
@@ -53,7 +101,7 @@
           </p>
         </mat-card-content>
 
-        <mat-card-actions>
+        <mat-card-actions style="display: flex; justify-content: start;">
           <ng-template *ngIf="post.likedByMe; then likedButton else notLikedButton"></ng-template>
           <ng-template #likedButton>
             <button mat-flat-button (click)="onClickLike(post)">
@@ -78,7 +126,8 @@
             </button>
           </ng-template>
 
-          <button mat-raised-button>Comment</button>
+          <button mat-raised-button (click)="onClickEdit(post.pid)" style="justify-self: end;">Edit</button>
+          <button mat-raised-button (click)="onClickDelete(post.pid)" color="warn" style="justify-self: end;">Delete</button>
         </mat-card-actions>
       </div>
 
