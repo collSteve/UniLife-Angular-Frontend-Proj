@@ -12,8 +12,7 @@ const routes: Routes = [
   {path: "posts-page", component: PostsPageComponent},
   {path: "post/:postid", component: IndividualPostPageComponent},
   {path: "createPost", component: CreatePostPageComponent, data: {modifyType:PostModifyType.Create}},
-  {path: "editPost/:postid", component: CreatePostPageComponent, data:{modifyType:PostModifyType.Edit}}
-  { path: "createPost", component: CreatePostPageComponent },
+  {path: "editPost/:postid", component: CreatePostPageComponent, data:{modifyType:PostModifyType.Edit}},
   { path: "group-page", component: GroupPageComponent },
 ];
 
