@@ -1,0 +1,33 @@
+<div style="width: 70%; display: inline-block;">
+  <header style="font-size:60px; padding:40px;">placeholder title</header>
+  <mat-card *ngFor="let post of Posts" style="display: flex; flex-direction: row; justify-content: start; gap:50px; align-items: center;">
+    <div>
+      <ng-template *ngIf="post.thum_nail_img != undefined; then thumb_nail; else no_thumb_nail"></ng-template>
+      <ng-template #thumb_nail>
+        <img src="{{post.thum_nail_img}}" alt="thumb_nail" style="height: 150px; width: 150px;">
+      </ng-template>
+      <ng-template #no_thumb_nail>
+        <img src="https://getuikit.com/v2/docs/images/placeholder_600x400.svg" alt="thumb_nail" style="height: 150px; width: 150px;">
+      </ng-template>
+    </div>
+
+    <div>
+      <mat-card-header [routerLink]="['/post', post.pid]" style="cursor: pointer;">
+        <mat-card-title>{{post.title}}</mat-card-title>
+        <mat-card-subtitle>Creator: {{post.creatorName}} |</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{post.postBody}}
+        </p>
+      </mat-card-content>
+
+
+    </div>
+  </mat-card>
+</div>
+  
+<mat-card style="display:inline-block; width:25%; vertical-align:top;">
+  Members
+</mat-card>
+

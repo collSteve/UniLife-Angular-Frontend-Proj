@@ -25,8 +25,10 @@ import { PostsPageComponent } from './posts-page/posts-page.component';
 import { HeaderNavbarComponent } from './header-navbar/header-navbar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
+import { IndividualGroupPageComponent } from './individual-group-page/individual-group-page.component';
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
+import { MyGroupsComponent } from './my-groups/my-groups.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +37,10 @@ import { GroupPageComponent } from './group-page/group-page.component';
     PostsPageComponent,
     HeaderNavbarComponent,
     IndividualPostPageComponent,
+    IndividualGroupPageComponent,
     CreatePostPageComponent,
-    GroupPageComponent
+    GroupPageComponent,
+    MyGroupsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,29 +1,18 @@
-
-
-<body>
-
-
-  <div style="width:100%;">
-    <div style="width:10%; float:left;"></div>
-    <input class="searchbar" style="width:80%; float:left; border-bottom:solid; border-width:1px;" placeholder="Search"> 
-    <button mat-raised-button (click)="clickSearch()"><mat-icon>search</mat-icon></button>
-  
-  </div>
 <div class="Groups" style="display:inline-block; width:70%;">
   <div id="groups-list" style="width: 100%;">
     <mat-card *ngFor="let group of Groups; index as i;" style="display: flex; flex-direction: row; border-radius:5px; justify-content: center; gap:50px; padding-left:80px;align-items: center;" class="GroupsList">
       <div *ngIf="i%2 == 0;" style="background-color:lightblue; border-radius:5px;">
-        <mat-card-header >
+        <mat-card-header [routerLink]="['/group', group.gid]" style="cursor: pointer;">
           <mat-card-title>{{group.groupName}}</mat-card-title>
 
 
           <mat-card-subtitle>GroupId: {{group.gid}}</mat-card-subtitle>
-
+          <mat-card-subtitle>Role: {{group.role}}</mat-card-subtitle>
 
         </mat-card-header>
         <div>
           <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left:16px">Members: 1</mat-card-subtitle>
-          <button mat-raised-button (click)="joinGroup(2,group.groupName,group.gid)" style="display:inline-block; margin-right: 25px;">Join</button>
+          
         </div>
       </div>
       <div *ngIf="i%2 > 0;" style="background-color: #dcf7f7; border-radius: 5px;">
@@ -32,27 +21,15 @@
 
 
           <mat-card-subtitle>GroupId: {{group.gid}}</mat-card-subtitle>
+          <mat-card-subtitle>Role: {{group.role}}</mat-card-subtitle>
 
 
         </mat-card-header>
         <div>
           <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left: 16px">Members: 1</mat-card-subtitle>
-          <button mat-raised-button (click)="joinGroup(2,group.groupName,group.gid)" style="display:inline-block; margin-right:25px;">Join</button>
+         
         </div>
       </div>
     </mat-card>
   </div>
 </div>
-<div style="position:fixed;display:inline-block; width:30%;">
-<mat-card style="margin-bottom:50px;">
-  <mat-card-header>
-    <mat-card-title style="width:100%; column-span:all; margin-left:140px;">Create Group</mat-card-title>
-  </mat-card-header>
-    <div>    
-      <input style="float:left; width:100%;" placeholder="Group Name">
-    </div>
-  
-  <button mat-raised-button style="background-color:blue; color:white; margin-top:20px; margin-left:180px;">Create</button>
-</mat-card>
-</div>
-</body>

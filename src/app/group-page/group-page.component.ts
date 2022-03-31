@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupModel } from '../models/group-model';
+import { Router } from '@angular/router';
+import { GroupModel, GroupNewObj,JoinGroupReq } from '../models/group-model';
 import { GroupService} from '../services/group-service.service'
 
 
@@ -10,11 +11,16 @@ import { GroupService} from '../services/group-service.service'
 })
 export class GroupPageComponent implements OnInit {
 
-  constructor(private groupService: GroupService) {
+  constructor(private groupService: GroupService, private router: Router) {
     
   }
 
-
+  groupJoinValues: JoinGroupReq = {
+    
+    aid: 2,
+    gid:-1,
+    role:"member"
+  }
 
   Groups: (GroupModel)[] = [
     {
@@ -53,7 +59,18 @@ export class GroupPageComponent implements OnInit {
     }
   }
 
-  
+  joinGroup(aid: number, name: string, gid: number) {
+    
+    this.groupJoinValues.aid = aid;
+    this.groupJoinValues.gid = gid;
+
+    const createRequest: JoinGroupReq = JSON.parse(JSON.stringify(this.groupJoinValues));
+
+    console.log(createRequest);
+
+    this.groupService.joinGroup(createRequest, (arg) => { console.log("Group Joined!") });
+    this.router.navigate(['/group', gid]);
+  }
 
 
 }
