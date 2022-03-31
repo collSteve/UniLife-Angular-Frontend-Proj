@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject } from '../models/post-models';
+import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject, CreateCommentPostRequest } from '../models/post-models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -86,6 +86,28 @@ export class PostService {
     let apiURL = `${environment.server_base_URL}/api/posts`;
 
     this.httpClient.delete(apiURL, {body:pid}).subscribe(()=>{
+      callback(true);
+    });
+  }
+
+  createComment(pid:number, creatorUid:number, commentBody:string, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/comment`;
+
+    const createCommentRequat: CreateCommentPostRequest = {
+      pid: pid,
+      creatorUid: creatorUid,
+      commentBody: commentBody
+    };
+
+    this.httpClient.post(apiURL, createCommentRequat).subscribe(()=>{
+      callback(true);
+    });
+  }
+
+  deleteComment(cid:number, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/comment`;
+
+    this.httpClient.delete(apiURL, {body:cid}).subscribe(()=>{
       callback(true);
     });
   }

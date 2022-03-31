@@ -35,9 +35,24 @@
         </button>
       </ng-template>
 
-      <button mat-raised-button>Add a Comment</button>
+      <button mat-raised-button (click)="onClickAddComment()">Add a Comment</button>
     </mat-card-actions>
   </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="createCommentsPanelValues.showCreateCommentsPanel">
+  <mat-form-field appearance="fill" style="width: 100%;">
+    <mat-label>Comment Body</mat-label>
+    <textarea matInput
+    name="commentBody"
+    style="width: 100%;"
+    placeholder="Your comment body"
+    [(ngModel)]="createCommentsPanelValues.commentBody"
+    #commentBody="ngModel"
+    required></textarea>
+    <mat-error *ngIf="commentBody.invalid">Invalid comment body</mat-error>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onClickCreateComment()">Post</button>
 </mat-card>
 
 <mat-tab-group dynamicHeight>
@@ -47,8 +62,9 @@
         <mat-card-header style="font-weight: bolder;">
           {{comment.creatorName}}
         </mat-card-header>
-        <mat-card-content>
-          {{comment.commentBody}}
+        <mat-card-content style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+          <p>{{comment.commentBody}}</p>
+          <button mat-raised-button color="warn" (click)="onClickDeleteComment(comment.cid)">Delete</button>
         </mat-card-content>
       </mat-card>
     </div>
