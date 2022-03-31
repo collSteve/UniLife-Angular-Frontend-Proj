@@ -5,39 +5,38 @@
     <mat-card-subtitle>Creator: {{myPost.creatorName}} | Created at
       {{datepipe.transform(myPost.createdDate,'YYYY-MMM-dd')}}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content style=" margin-left: 16px; margin-bottom: 10px;">
     <p>
       {{myPost.postBody}}
     </p>
-
-    <mat-card-actions>
-      <ng-template *ngIf="myPost.likedByMe; then likedButton else notLikedButton"></ng-template>
-      <ng-template #likedButton>
-        <button mat-flat-button (click)="onClickLike(myPost)">
-          <mat-icon color="accent">favorite</mat-icon>
-        </button>
-      </ng-template>
-      <ng-template #notLikedButton>
-        <button mat-flat-button (click)="onClickLike(myPost)">
-          <mat-icon>favorite_border</mat-icon>
-        </button>
-      </ng-template>
-
-      <ng-template *ngIf="myPost.dislikedByMe; then DislikedButton else notDislikedButton"></ng-template>
-      <ng-template #DislikedButton>
-        <button mat-flat-button (click)="onClickDisike(myPost)">
-          <mat-icon color="primary">thumb_down</mat-icon>
-        </button>
-      </ng-template>
-      <ng-template #notDislikedButton>
-        <button mat-flat-button (click)="onClickDisike(myPost)">
-          <mat-icon>thumb_down</mat-icon>
-        </button>
-      </ng-template>
-
-      <button mat-raised-button (click)="onClickAddComment()">Add a Comment</button>
-    </mat-card-actions>
   </mat-card-content>
+  <mat-card-actions>
+    <ng-template *ngIf="myPost.likedByMe; then likedButton else notLikedButton"></ng-template>
+    <ng-template #likedButton>
+      <button mat-flat-button (click)="onClickLike(myPost)">
+        <mat-icon color="accent">favorite</mat-icon>
+      </button>
+    </ng-template>
+    <ng-template #notLikedButton>
+      <button mat-flat-button (click)="onClickLike(myPost)">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+    </ng-template>
+
+    <ng-template *ngIf="myPost.dislikedByMe; then DislikedButton else notDislikedButton"></ng-template>
+    <ng-template #DislikedButton>
+      <button mat-flat-button (click)="onClickDisike(myPost)">
+        <mat-icon color="primary">thumb_down</mat-icon>
+      </button>
+    </ng-template>
+    <ng-template #notDislikedButton>
+      <button mat-flat-button (click)="onClickDisike(myPost)">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+    </ng-template>
+
+    <button mat-raised-button (click)="onClickAddComment()">Add a Comment</button>
+  </mat-card-actions>
 </mat-card>
 
 <mat-card *ngIf="createCommentsPanelValues.showCreateCommentsPanel">
@@ -60,9 +59,9 @@
     <div class="tap-container">
       <mat-card *ngFor="let comment of comments">
         <mat-card-header style="font-weight: bolder;">
-          {{comment.creatorName}}
+          <mat-card-title style="font-size: medium; margin-bottom: 5px;">{{comment.creatorName}}</mat-card-title>
         </mat-card-header>
-        <mat-card-content style="display: flex; flex-direction: row; justify-content: space-between; align-items: center;">
+        <mat-card-content style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; margin: 0 16px">
           <p>{{comment.commentBody}}</p>
           <button mat-raised-button color="warn" (click)="onClickDeleteComment(comment.cid)">Delete</button>
         </mat-card-content>
