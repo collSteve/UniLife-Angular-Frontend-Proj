@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: "createPost", component: CreatePostPageComponent, data: {modifyType:PostModifyType.Create}},
   {path: "editPost/:postid", component: CreatePostPageComponent, data:{modifyType:PostModifyType.Edit}},
   { path: "group-page", component: GroupPageComponent },
-  { path: "university-post-count", component: UniversityPostNumberPageComponent}
+  { path: "university-post-count", component: UniversityPostNumberPageComponent},
   { path: "my-groups", component: MyGroupsComponent },
 ];
 

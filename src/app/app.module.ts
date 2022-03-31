@@ -41,8 +41,7 @@ import { UniversityPostNumberPageComponent } from './university-post-number-page
     IndividualPostPageComponent,
     IndividualGroupPageComponent,
     CreatePostPageComponent,
-
-    UniversityPostNumberPageComponent
+    UniversityPostNumberPageComponent,
     GroupPageComponent,
     MyGroupsComponent
   ],
