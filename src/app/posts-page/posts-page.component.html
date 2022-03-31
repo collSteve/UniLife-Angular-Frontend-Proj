@@ -1,8 +1,19 @@
-<mat-toolbar color="basic" style="display: flex; flex-direction: row; justify-content : flex-end;">
-  <button mat-raised-button routerLink="/" class="navigation-btn" routerLink="/createPost" [state]="{modifyType: postModifyTypeEnum.Create}">
-    <mat-icon>library_add</mat-icon>
-    <span>Create posts</span>
-  </button>
+<mat-toolbar color="basic" style="display: flex; flex-direction: row; justify-content:space-between; align-items: center;">
+  <div id="nav-start" style="font-size: small; display: flex; flex-direction: row; justify-content: start; gap: 10px; align-items: center;">
+    <p style="margin: 0;">Number of Posts in Current Selection: In Datatbase: {{dbNumPostsDisplay}} | In current display: {{Posts.length}}</p>
+  </div>
+
+  <div id="nav-end" style="display: flex; flex-direction: row; justify-content: end; gap: 10px;">
+    <button mat-raised-button class="navigation-btn" routerLink="/university-post-count">
+      <span>View Univeristy Posts Count Stat</span>
+    </button>
+
+    <button mat-raised-button class="navigation-btn" routerLink="/createPost" [state]="{modifyType: postModifyTypeEnum.Create}">
+      <mat-icon>library_add</mat-icon>
+      <span>Create posts</span>
+    </button>
+  </div>
+
 </mat-toolbar>
 
 <div id="page" style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -95,7 +106,7 @@
           <mat-card-title>{{post.title}}</mat-card-title>
           <mat-card-subtitle>Creator: {{post.creatorName}} | Created at {{datepipe.transform(post.createdDate ,'YYYY-MMM-dd')}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content>
+        <mat-card-content style="margin: 0 16px">
           <p>
             {{post.postBody}}
           </p>

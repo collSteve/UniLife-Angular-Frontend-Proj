@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject } from '../models/post-models';
+import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject, CreateCommentPostRequest, UniverityNumPostGetRequestObject } from '../models/post-models';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -87,6 +87,52 @@ export class PostService {
 
     this.httpClient.delete(apiURL, {body:pid}).subscribe(()=>{
       callback(true);
+    });
+  }
+
+  createComment(pid:number, creatorUid:number, commentBody:string, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/comment`;
+
+    const createCommentRequat: CreateCommentPostRequest = {
+      pid: pid,
+      creatorUid: creatorUid,
+      commentBody: commentBody
+    };
+
+    this.httpClient.post(apiURL, createCommentRequat).subscribe(()=>{
+      callback(true);
+    });
+  }
+
+  deleteComment(cid:number, callback:(arg:boolean)=>void) {
+    let apiURL = `${environment.server_base_URL}/api/posts/comment`;
+
+    this.httpClient.delete(apiURL, {body:cid}).subscribe(()=>{
+      callback(true);
+    });
+  }
+
+  getNumberPostsByUniversity(callback:(arg:UniverityNumPostGetRequestObject[])=>void){
+    let apiURL = `${environment.server_base_URL}/api/posts/Count/University`;
+    this.httpClient.get<UniverityNumPostGetRequestObject[]>(apiURL)
+    .subscribe((uniPostsCount:UniverityNumPostGetRequestObject[])=>{
+      callback(JSON.parse(JSON.stringify(uniPostsCount)));
+    });
+  }
+
+  getNumberPostsByCategories(postType:string, categories: string[], callback:(arg:number)=>void) {
+    let cateQuery:string = "";
+    categories.forEach((v)=>{
+      cateQuery+=`&category=${v}`;
+    });
+    // remove space
+    cateQuery.replace(/\s/g, '');
+
+    let apiURL = `${environment.server_base_URL}/api/Posts/Count/Category?postType=${postType}${cateQuery}`;
+
+    this.httpClient.get<number>(apiURL, {responseType: 'number' as 'json'})
+    .subscribe((num: number)=>{
+      callback(num);
     });
   }
 }

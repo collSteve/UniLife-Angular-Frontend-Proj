@@ -1,3 +1,4 @@
+
 export enum PostType  {
   SellingPost= "SellingPost",
   HousingPost= "HousingPost",
@@ -84,4 +85,16 @@ export type UpdatePostPutRequestObject =
     email?: string,
     phoneNumber?:string
     address?: string
+}
+
+export type CreateCommentPostRequest =
+{
+    pid: number,
+    creatorUid: number,
+    commentBody: string
+}
+
+export type UniverityNumPostGetRequestObject = {
+  universityName: string,
+  numberOfPosts: number
 }

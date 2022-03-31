@@ -21,10 +21,18 @@ export class IndividualPostPageComponent implements OnInit {
 
   comments: CommentModel[] = [
     {cid:123, pid: 2132, commentBody: "Lol Funny Comments", creatorName:"Seve", creatorUid:1231}
-  ]
+  ];
+
+  createCommentsPanelValues = {
+    showCreateCommentsPanel: false,
+    commentBody: ""
+  }
+
+
   constructor(private postsService: PostService, private route: ActivatedRoute) { }
 
   pid:number = -999;
+  uid:number = 1001; // dummy data
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -73,5 +81,26 @@ export class IndividualPostPageComponent implements OnInit {
       post.likedByMe = false;
       post.dislikedByMe = true;
     }
+  }
+
+  onClickAddComment() {
+    this.createCommentsPanelValues.showCreateCommentsPanel = !this.createCommentsPanelValues.showCreateCommentsPanel;
+  }
+
+  onClickCreateComment() {
+    if (this.createCommentsPanelValues.commentBody) {
+      this.postsService.createComment(this.pid, this.uid, this.createCommentsPanelValues.commentBody,
+        (arg)=>{
+          console.log("create comment success");
+          this.getCommentsanUpdateDisplay(this.pid); // re-fetch all comments
+        });
+    }
+  }
+
+  onClickDeleteComment(cid:number) {
+    this.postsService.deleteComment(cid, (arg)=>{
+      console.log("delete comment success");
+      this.getCommentsanUpdateDisplay(this.pid); // re-fetch all comments
+    });
   }
 }
