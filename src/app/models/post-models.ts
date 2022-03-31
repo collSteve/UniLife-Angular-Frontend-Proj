@@ -93,3 +93,8 @@ export type CreateCommentPostRequest =
     creatorUid: number,
     commentBody: string
 }
+
+export type UniverityNumPostGetRequestObject = {
+  universityName: string,
+  numberOfPosts: number
+}

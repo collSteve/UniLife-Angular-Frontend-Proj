@@ -19,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
+import {MatTableModule} from '@angular/material/table';
 
 import { TestCompComponent } from './test-comp/test-comp.component';
 import { PostsPageComponent } from './posts-page/posts-page.component';
@@ -27,6 +28,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 import { GroupPageComponent } from './group-page/group-page.component';
+import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { GroupPageComponent } from './group-page/group-page.component';
     HeaderNavbarComponent,
     IndividualPostPageComponent,
     CreatePostPageComponent,
-    GroupPageComponent
+    GroupPageComponent,
+    UniversityPostNumberPageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +59,8 @@ import { GroupPageComponent } from './group-page/group-page.component';
     MatTabsModule,
     MatInputModule,
     MatButtonToggleModule,
-    MatListModule
+    MatListModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

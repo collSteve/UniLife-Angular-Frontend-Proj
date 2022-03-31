@@ -26,7 +26,7 @@ export class PostsPageComponent implements OnInit {
     PostType.HousingPost,
     PostType.SocialMediaPost
   ];
-  
+
   orderBys: ({ postOrder?: PostOrderByValue, display: string })[] = [
     { postOrder: PostOrderByValue.CreatedDate, display: "Order by Creation Date" },
     { postOrder: PostOrderByValue.Title, display: "Order By Title" },
@@ -44,6 +44,8 @@ export class PostsPageComponent implements OnInit {
     categories:[],
     queryType: QueryType.Simple
   };
+
+  dbNumPostsDisplay:string = 'NaN';
 
   Posts: (PostModel & UserPostInfo)[] = [
     {
@@ -81,6 +83,7 @@ export class PostsPageComponent implements OnInit {
         this.postsService.getPostByCategories(postType, this.panelBindedValues.categories,
           (post)=>this.updatePostsList(post), orderBy, asc);
     }
+    this.getandUpdateDbNumberPosts();
   }
 
   updatePostsList(posts: PostModel[]) {
@@ -143,6 +146,21 @@ export class PostsPageComponent implements OnInit {
 
   onQueryPanelTabChange(index:number) {
     this.panelBindedValues.queryType = index;
+  }
+
+  getandUpdateDbNumberPosts() {
+    if (this.panelBindedValues.queryType === QueryType.Simple) {
+      this.postsService.getNumberPostsByCategories(this.panelBindedValues.postType,
+        [], (arg)=>{this.dbNumPostsDisplay=String(arg)});
+    }
+    else if (this.panelBindedValues.queryType === QueryType.FilterByCategories) {
+      this.postsService.getNumberPostsByCategories(this.panelBindedValues.postType,
+        this.panelBindedValues.categories, (arg)=>{this.dbNumPostsDisplay=String(arg)});
+    }
+    else {
+      this.dbNumPostsDisplay = "Not supported in current query mode";
+    }
+
   }
 }
 

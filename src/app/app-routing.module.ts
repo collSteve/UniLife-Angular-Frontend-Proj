@@ -6,6 +6,7 @@ import { GroupPageComponent } from './group-page/group-page.component';
 import { IndividualPostPageComponent } from './individual-post-page/individual-post-page.component';
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 import { PostModifyType } from './models/post-models';
+import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/posts-page', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: "createPost", component: CreatePostPageComponent, data: {modifyType:PostModifyType.Create}},
   {path: "editPost/:postid", component: CreatePostPageComponent, data:{modifyType:PostModifyType.Edit}},
   { path: "group-page", component: GroupPageComponent },
+  { path: "university-post-count", component: UniversityPostNumberPageComponent}
 ];
 
 @NgModule({
