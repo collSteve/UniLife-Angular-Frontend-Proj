@@ -42,9 +42,9 @@ import { UniversityPostNumberPageComponent } from './university-post-number-page
     IndividualGroupPageComponent,
     CreatePostPageComponent,
 
-    UniversityPostNumberPageComponent
+    UniversityPostNumberPageComponent,
     GroupPageComponent,
-    MyGroupsComponent
+    MyGroupsComponent,
   ],
   imports: [
     BrowserModule,

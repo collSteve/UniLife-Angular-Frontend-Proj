@@ -1,7 +1,7 @@
 export type GroupModel = {
   gid: number,
   groupName: string,
-  MemberCount?: number,
+  memberCount?: number,
   role?: string,
 }
 
@@ -19,4 +19,9 @@ export type JoinGroupReq = {
   aid: number,
   gid: number,
   role: string,
+}
+
+export type changeNameObj = {
+  name: string,
+  gid: number
 }
