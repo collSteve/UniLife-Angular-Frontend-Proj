@@ -6,19 +6,19 @@ export enum AccountType {
 
 export type AccountModel = {
     aid: number,
-    username: string, 
     email: string,
+    username: string, 
     password: string
 };
 
 export type AccountCreateRequestObject = {
     AccountType: string,
-    Username: string,
     Email: string,
+    Username: string,
     Password: string
 };
 
 export type AccountUsernameAndEmailRequestObject = {
-    Email: string,
-    Username: string
+    email: string,
+    username: string
 }

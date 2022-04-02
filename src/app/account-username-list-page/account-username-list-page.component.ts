@@ -9,10 +9,10 @@ import { AccountService } from '../services/account-service.service';
 })
 export class AccountUsernameListPageComponent implements OnInit {
 
-  displayedColumnsAcc: string[] = ['Username', 'Email'];
+  displayedColumnsAcc: string[] = ['username', 'email'];
 
   UsernameAndAccountList: AccountUsernameAndEmailRequestObject[] =[
-    {Email:"gmail.com", Username: "username"}
+    {email:"gmail.com", username: "username"}
   ];
   
   constructor(private accountService: AccountService) { }
@@ -23,7 +23,8 @@ export class AccountUsernameListPageComponent implements OnInit {
 
   getandUpdateDisplay() {
     this.accountService.getUsernameAndEmailAccount((usernameandemail)=>{
-      this.UsernameAndAccountList = usernameandemail;
+      this.UsernameAndAccountList = usernameandemail
+      console.log(this.UsernameAndAccountList);
     });
   }
 

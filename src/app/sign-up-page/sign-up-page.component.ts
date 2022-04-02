@@ -15,10 +15,10 @@ export class SignUpPageComponent implements OnInit {
   creationAccountType: AccountType = AccountType.UserAccount;
 
  accountCreationValues: AccountCreateRequestObject = {
+    AccountType: AccountType.UserAccount,
     Username: "",
     Email: "",
-    Password: "",
-    AccountType: AccountType.UserAccount
+    Password: ""
   }
 
   constructor(private accountService: AccountService, private router: Router) { }
