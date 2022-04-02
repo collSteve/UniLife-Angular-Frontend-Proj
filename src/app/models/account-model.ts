@@ -19,6 +19,6 @@ export type AccountCreateRequestObject = {
 };
 
 export type AccountUsernameAndEmailRequestObject = {
-    Email: string,
-    Username: string
+    email: string,
+    username: string
 }
