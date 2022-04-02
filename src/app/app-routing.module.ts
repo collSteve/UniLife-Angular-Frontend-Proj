@@ -11,6 +11,8 @@ import { PostModifyType } from './models/post-models';
 import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
+import { CreateGroupPostPageComponent } from './create-group-post-page/create-group-post-page.component';
+import { AccountUsernameListPageComponent } from './account-username-list-page/account-username-list-page.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/posts-page', pathMatch: 'full' },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: "university-post-count", component: UniversityPostNumberPageComponent},
   { path: "my-groups", component: MyGroupsComponent },
   { path: "login-page", component: LoginPageComponent},
-  { path: "sign-up-page", component: SignUpPageComponent}
+  { path: "sign-up-page", component: SignUpPageComponent},
+  { path: "group/:groupid/createGroupPost", component: CreateGroupPostPageComponent, data:  {modifyType:PostModifyType.Create}},
+  { path: "account-username-list-page", component: AccountUsernameListPageComponent}
 ];
 
 @NgModule({

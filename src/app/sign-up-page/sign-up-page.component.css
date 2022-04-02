@@ -1,0 +1,30 @@
+.main-signupdiv-login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .emailspace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .usernamespace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .passwordspace{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .signupbox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

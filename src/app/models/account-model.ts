@@ -9,11 +9,16 @@ export type AccountModel = {
     username: string, 
     email: string,
     password: string
-}
+};
 
-export type accountCreateRequestObject = {
+export type AccountCreateRequestObject = {
     AccountType: string,
-    accountusername: string,
-    accountemail: string,
-    accountpassword: string
+    Username: string,
+    Email: string,
+    Password: string
+};
+
+export type AccountUsernameAndEmailRequestObject = {
+    Email: string,
+    Username: string
 }

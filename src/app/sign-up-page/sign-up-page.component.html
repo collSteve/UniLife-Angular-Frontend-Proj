@@ -1,6 +1,66 @@
-<h4>Please select the Account Type to be created</h4>
-<mat-button-toggle-group name="SelectAccountType">
-    <mat-button-toggle [value]="accountTypeEnum.UserAccount">User</mat-button-toggle>
-    <mat-button-toggle [value]="accountTypeEnum.BusinessAccount">Business</mat-button-toggle>
-    <mat-button-toggle [value]="accountTypeEnum.AdminAccount">Admin</mat-button-toggle>
-</mat-button-toggle-group>
+<div class="main-signupdiv-login">
+
+    <mat-card class="signup-page-card">
+        <mat-card-content>
+            <form class="sign-form">
+                <table class="signup-form-full-width" cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-button-toggle-group name="selectAccountType" [(ngModel)]="accountCreationValues.AccountType">
+                                <mat-button-toggle [value]="accountTypeEnum.UserAccount">User</mat-button-toggle>
+                                <mat-button-toggle [value]="accountTypeEnum.AdminAccount">Admin</mat-button-toggle>
+                                <mat-button-toggle [value]="accountTypeEnum.BusinessAccount">Business</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="emailspace">
+                            <mat-form-field appearence="fill">
+                                <mat-label>Email</mat-label>
+                                <input matInput 
+                                name="Email" 
+                                type="text"
+                                [(ngModel)]="accountCreationValues.Email"
+                                placeholder="Email" required> 
+                            </mat-form-field>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="usernamespace">
+                            <mat-form-field appearence="fill">
+                                <mat-label>Username</mat-label>
+                                <input matInput 
+                                name="Username" 
+                                type="text"
+                                [(ngModel)]="accountCreationValues.Username"
+                                placeholder="Username" required> 
+                            </mat-form-field>
+                        </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <div class="passwordspace">
+                            <mat-form-field appearence="fill">
+                                <mat-label>Password</mat-label>
+                                <input matInput 
+                                type="password" 
+                                name="Password" 
+                                [(ngModel)]="accountCreationValues.Password"
+                                placeholder="Password" required>
+                            </mat-form-field>
+                        </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </mat-card-content>
+        <div class="signupbox">
+        <mat-card-actions>
+            <button mat-stroked-button color="warn" (click)="SignUpClicked()">Create Account</button>
+        </mat-card-actions>
+    </div> 
+    </mat-card>

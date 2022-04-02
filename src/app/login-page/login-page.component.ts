@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { accountCreateRequestObject, AccountType } from '../models/account-model';
+import { AccountCreateRequestObject, AccountType } from '../models/account-model';
 
 @Component({
   selector: 'app-login-page',
@@ -12,10 +12,10 @@ export class LoginPageComponent implements OnInit {
 
   creationAccountType: AccountType = AccountType.UserAccount;
 
-  accountCreationValues: accountCreateRequestObject = {
-    accountusername:"",
-    accountemail:"",
-    accountpassword:"",
+  accountCreationValues: AccountCreateRequestObject = {
+    Username:"",
+    Email:"",
+    Password:"",
     AccountType: AccountType.UserAccount
   }
 

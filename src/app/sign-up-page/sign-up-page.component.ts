@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AccountCreateRequestObject, AccountType } from '../models/account-model';
+import { AccountService } from '../services/account-service.service';
 
 @Component({
   selector: 'app-sign-up-page',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpPageComponent implements OnInit {
 
-  constructor() { }
+  signupPageTitle: string ="";
+
+  creationAccountType: AccountType = AccountType.UserAccount;
+
+ accountCreationValues: AccountCreateRequestObject = {
+    Username: "",
+    Email: "",
+    Password: "",
+    AccountType: AccountType.UserAccount
+  }
+
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  public get accountTypeEnum(): typeof AccountType {
+    return AccountType;
+  }
+  
+  SignUpClicked() {
+
+    const createRequest: AccountCreateRequestObject = JSON.parse(JSON.stringify(this.accountCreationValues));
+    
+    this.accountService.createAccount(createRequest, ()=>{console.log("success")});
+    this.router.navigate(['/posts-page']);
+  }
 }
