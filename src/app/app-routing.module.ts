@@ -9,8 +9,6 @@ import { IndividualGroupPageComponent } from './individual-group-page/individual
 import { CreatePostPageComponent } from './create-post-page/create-post-page.component';
 import { PostModifyType } from './models/post-models';
 import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/posts-page', pathMatch: 'full' },
@@ -22,8 +20,6 @@ const routes: Routes = [
   { path: "group-page", component: GroupPageComponent },
   { path: "university-post-count", component: UniversityPostNumberPageComponent},
   { path: "my-groups", component: MyGroupsComponent },
-  { path: "login-page", component: LoginPageComponent},
-  { path: "sign-up-page", component: SignUpPageComponent}
 ];
 
 @NgModule({

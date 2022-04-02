@@ -31,8 +31,6 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
 import { GroupPageComponent } from './group-page/group-page.component';
 import { MyGroupsComponent } from './my-groups/my-groups.component';
 import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +43,7 @@ import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
     CreatePostPageComponent,
     UniversityPostNumberPageComponent,
     GroupPageComponent,
-    MyGroupsComponent,
-    LoginPageComponent,
-    SignUpPageComponent
+    MyGroupsComponent
   ],
   imports: [
     BrowserModule,
