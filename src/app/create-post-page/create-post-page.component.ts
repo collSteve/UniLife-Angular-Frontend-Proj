@@ -49,7 +49,6 @@ export class CreatePostPageComponent implements OnInit {
             this.postCreationValues.email = post.email;
             this.postCreationValues.phoneNumber = Number(post.phoneNum);
             this.postCreationValues.address = post.address;
-
           });
         });
       }
