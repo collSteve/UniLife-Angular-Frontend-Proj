@@ -1,11 +1,11 @@
 
 
-<body>
+<body style="height: auto;">
 
 
   <div style="width:100%;">
     <div style="width:10%; float:left;"></div>
-    <input class="searchbar" style="width:80%; float:left; border-bottom:solid; border-width:1px;" placeholder="Search"> 
+    <input class="searchbar"  style="width:80%; padding:8px; float:left; border-bottom:solid; border-width:1px;" placeholder="Search"> 
     <button mat-raised-button (click)="clickSearch()"><mat-icon>search</mat-icon></button>
   
   </div>
@@ -22,7 +22,7 @@
 
         </mat-card-header>
         <div>
-          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left:16px">Members: 1</mat-card-subtitle>
+          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left:16px">Members: {{group.memberCount}}</mat-card-subtitle>
           <button mat-raised-button (click)="joinGroup(2,group.groupName,group.gid)" style="display:inline-block; margin-right: 25px;">Join</button>
         </div>
       </div>
@@ -36,7 +36,7 @@
 
         </mat-card-header>
         <div>
-          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left: 16px">Members: 1</mat-card-subtitle>
+          <mat-card-subtitle style="display:inline-block; padding-right:500px; margin-left: 16px">Members: {{group.memberCount}}</mat-card-subtitle>
           <button mat-raised-button (click)="joinGroup(2,group.groupName,group.gid)" style="display:inline-block; margin-right:25px;">Join</button>
         </div>
       </div>
@@ -49,10 +49,10 @@
     <mat-card-title style="width:100%; column-span:all; margin-left:140px;">Create Group</mat-card-title>
   </mat-card-header>
     <div>    
-      <input style="float:left; width:100%;" placeholder="Group Name">
+      <input id="NewGroup" style="float:left;  width:100%;" placeholder="Group Name">
     </div>
   
-  <button mat-raised-button style="background-color:blue; color:white; margin-top:20px; margin-left:180px;">Create</button>
+  <button mat-raised-button (click)="createGroup(2)" style="background-color:blue; color:white; margin-top:20px; margin-left:180px;">Create</button>
 </mat-card>
 </div>
 </body>
