@@ -1,5 +1,12 @@
 <div style="width: 70%; display: inline-block;">
-  <header style="font-size:60px; padding:40px;">placeholder title</header>
+  <div style="width:100%; border-radius:3px; border-bottom: 2px solid grey; background-color:lightblue;">
+    <header id="GroupName" style="font-size: 75px; display: inline-block; padding: 40px; padding-top: 40px; color: #0c0b33;">{{Groups[0].groupName}}</header>
+    <button (click)="changeName()" style="vertical-align:central;"><mat-icon>input</mat-icon></button>
+    <button style="margin-left: 450px;" mat-raised-button class="navigation-btn" routerLink="./createGroupPost">
+      <mat-icon>library_add</mat-icon>
+      <span>Create posts</span>
+    </button>                                                  
+  </div>
   <mat-card *ngFor="let post of Posts" style="display: flex; flex-direction: row; justify-content: start; gap:50px; align-items: center;">
     <div>
       <ng-template *ngIf="post.thum_nail_img != undefined; then thumb_nail; else no_thumb_nail"></ng-template>
@@ -14,7 +21,7 @@
     <div>
       <mat-card-header [routerLink]="['/post', post.pid]" style="cursor: pointer;">
         <mat-card-title>{{post.title}}</mat-card-title>
-        <mat-card-subtitle>Creator: {{post.creatorName}} |</mat-card-subtitle>
+        <mat-card-subtitle>Creator: {{post.creatorAid}} |  Created at {{datepipe.transform(post.createdDate ,'YYYY-MMM-dd')}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <p>
@@ -28,6 +35,6 @@
 </div>
   
 <mat-card style="display:inline-block; width:25%; vertical-align:top;">
-  Members
+  Members: {{Groups[0].memberCount}}
 </mat-card>
 

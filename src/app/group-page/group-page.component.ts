@@ -22,6 +22,12 @@ export class GroupPageComponent implements OnInit {
     role:"member"
   }
 
+  groupCreateValues: GroupNewObj = {
+
+    aid: 2,
+    groupName: "",
+  }
+
   Groups: (GroupModel)[] = [
     {
       gid: 1, groupName: "Group 1"
@@ -72,5 +78,21 @@ export class GroupPageComponent implements OnInit {
     this.router.navigate(['/group', gid]);
   }
 
+  createGroup(aid: number) {
+    
+    const name = <HTMLInputElement>document.querySelector("#NewGroup");
+    if (name.value != "") {
+      this.groupCreateValues.aid = aid;
+      this.groupCreateValues.groupName = <string>name.value;
+      console.log(name.value);
 
+      const createrRequest: GroupNewObj = JSON.parse(JSON.stringify(this.groupCreateValues));
+
+      console.log(createrRequest);
+
+      this.groupService.createGroup(createrRequest, (arg) => { console.log("Group Created!") });
+      this.router.navigate(['/my-groups']);
+    }
+  }
+  
 }

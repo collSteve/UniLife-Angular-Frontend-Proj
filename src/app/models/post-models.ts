@@ -36,7 +36,8 @@ export type PostModel = {
   creatorName:string,
   email?: string,
   phoneNum?:string,
-  address?:string
+  address?: string,
+  gid?: number
 };
 
 export type UserPostInfo = {
