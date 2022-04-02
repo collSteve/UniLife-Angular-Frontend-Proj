@@ -25,3 +25,8 @@ export type changeNameObj = {
   name: string,
   gid: number
 }
+
+export type newGroupPost = {
+  gid?: number,
+  pid?: number,
+}

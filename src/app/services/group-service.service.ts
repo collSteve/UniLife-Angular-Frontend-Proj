@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GroupModel, GroupNewObj,JoinGroupReq, changeNameObj } from '../models/group-model';
+import { GroupModel, GroupNewObj, JoinGroupReq, changeNameObj, newGroupPost } from '../models/group-model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -58,6 +58,13 @@ export class GroupService {
   changeName(cReq: changeNameObj, callback: (arg: boolean) => void) {
     let apiURL = `${environment.server_base_URL}/api/Group`;
     this.httpClient.put(apiURL, cReq).subscribe(() => {
+      callback(true);
+    });
+  }
+
+  createGroupPost(createRequest: newGroupPost, callback: (arg1: boolean) => void) {
+    let apiURL = `${environment.server_base_URL}/api/Group/create/GroupPost`;
+    this.httpClient.post(apiURL, createRequest).subscribe(() => {
       callback(true);
     });
   }

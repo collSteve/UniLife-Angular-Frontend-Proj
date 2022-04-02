@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { GroupService } from '../services/group-service.service'
 import { PostOrderByValue, PostModel, PostType, CommentModel, PostCreateRequestObject, UpdatePostPutRequestObject, UserPostInfo } from '../models/post-models';
 import { PostService } from '../services/post-service.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-individual-group-page',
@@ -11,6 +12,7 @@ import { PostService } from '../services/post-service.service';
   styleUrls: ['./individual-group-page.component.css']
 })
 export class IndividualGroupPageComponent implements OnInit {
+  datepipe: DatePipe = new DatePipe('en-US');
 
   constructor(private groupService: GroupService, private postsService: PostService, private router: Router) { }
 
@@ -56,7 +58,9 @@ export class IndividualGroupPageComponent implements OnInit {
   }
 
   getPostsAndUpdate() {
-    this.postsService.getPostsByType(PostType.SellingPost, (post) => this.updatePostsList(post));
+    var x = window.location.pathname.substring(7);
+    var y: number = +x;
+    this.postsService.getGroupPosts(y, (post) => this.updatePostsList(post));
   }
 
   updateGroupsList(groups: GroupModel[]) {

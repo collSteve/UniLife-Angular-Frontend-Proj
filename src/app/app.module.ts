@@ -31,6 +31,7 @@ import { CreatePostPageComponent } from './create-post-page/create-post-page.com
 import { GroupPageComponent } from './group-page/group-page.component';
 import { MyGroupsComponent } from './my-groups/my-groups.component';
 import { UniversityPostNumberPageComponent } from './university-post-number-page/university-post-number-page.component';
+import { CreateGroupPostPageComponent } from './create-group-post-page/create-group-post-page.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { UniversityPostNumberPageComponent } from './university-post-number-page
     UniversityPostNumberPageComponent,
     GroupPageComponent,
     MyGroupsComponent,
+    CreateGroupPostPageComponent,
   ],
   imports: [
     BrowserModule,

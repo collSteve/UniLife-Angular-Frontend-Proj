@@ -135,4 +135,16 @@ export class PostService {
       callback(num);
     });
   }
+
+  getGroupPosts(gid: number,
+    callback: (arg1: PostModel[]) => void, orderBy?: PostOrderByValue, asc?: boolean) {
+
+    let apiURL = `${environment.server_base_URL}/api/Group/Posts/${gid}`;
+    this.httpClient.get<PostModel[]>(apiURL)
+      .subscribe((posts) => {
+        callback(JSON.parse(JSON.stringify(posts)));
+      });
+  }
+
+  
 }
