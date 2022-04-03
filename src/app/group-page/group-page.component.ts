@@ -12,11 +12,11 @@ import { GroupService} from '../services/group-service.service'
 export class GroupPageComponent implements OnInit {
 
   constructor(private groupService: GroupService, private router: Router) {
-    
+
   }
 
   groupJoinValues: JoinGroupReq = {
-    
+
     aid: 2,
     gid:-1,
     role:"member"
@@ -66,7 +66,7 @@ export class GroupPageComponent implements OnInit {
   }
 
   joinGroup(aid: number, name: string, gid: number) {
-    
+
     this.groupJoinValues.aid = aid;
     this.groupJoinValues.gid = gid;
 
@@ -79,7 +79,7 @@ export class GroupPageComponent implements OnInit {
   }
 
   createGroup(aid: number) {
-    
+
     const name = <HTMLInputElement>document.querySelector("#NewGroup");
     if (name.value != "") {
       this.groupCreateValues.aid = aid;
@@ -90,9 +90,12 @@ export class GroupPageComponent implements OnInit {
 
       console.log(createrRequest);
 
-      this.groupService.createGroup(createrRequest, (arg) => { console.log("Group Created!") });
-      this.router.navigate(['/my-groups']);
+      this.groupService.createGroup(createrRequest, (arg) => {
+        console.log("Group Created!");
+        this.router.navigate(['/my-groups']);
+      });
+
     }
   }
-  
+
 }
